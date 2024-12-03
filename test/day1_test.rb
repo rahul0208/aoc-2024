@@ -23,8 +23,8 @@ class DayOneTest < Test::Unit::TestCase
       data1.append(e[0].to_i)
       data2.append(e[1].to_i)
     end
-    puts "d1 #{data1.size}"
-    puts "d2 #{data2.size}"    
+    # puts "d1 #{data1.size}"
+    # puts "d2 #{data2.size}"    
     distance =  DayOne.new(data1,data2) 
     assert_equal(2066446, distance.determineDiffTotal)
   end

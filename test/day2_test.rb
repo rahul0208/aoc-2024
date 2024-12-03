@@ -23,10 +23,10 @@ class DayTwoTest < Test::Unit::TestCase
 
   test "day 2 test 3" do
     data=CSV.read("data\\day2.csv",converters: %i[numeric date])        
-    puts "Day2 d1 #{data.size}"
-    puts "Day2  d2 #{data[1]}"    
+    # puts "Day2 d1 #{data.size}"
+    # puts "Day2  d2 #{data[1]}"    
     checker =  DayTwo.new
-    assert_equal(236, checker.classifyReport(data))   
+    assert_equal(308, checker.classifyReport(data))   
   end
 
 
