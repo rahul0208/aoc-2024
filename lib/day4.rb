@@ -5,31 +5,31 @@ class DayFour
     def determineCount(data)
         rcount=data.length
         ccount=data[0].length
-        pos0=falttenHorizontalPositons(rcount,ccount)
-        pos1=falttenVerticalPositons(rcount,ccount)
+        # pos0=falttenHorizontalPositons(rcount,ccount)
+        # pos1=falttenVerticalPositons(rcount,ccount)
         pos2=falttenDiagnolPositons(rcount,ccount)
         pos3=falttenReverseDiagnolPositons(rcount,ccount)
         sum =0
-        hits = Array.new
-        pos0.each do |h|
-            hcount,hpos =countPattern(data, h, ['X','M','A','S'],[]) 
-            # puts "hcount #{hcount}"
-            h1count,h1pos=countPattern(data, h, ['S','A','M','X'],[]) 
-            # puts "h1count #{h1count}"
-            sum += hcount+h1count
-            hits += hpos+h1pos
-        end
+        # hits = Array.new
+        # pos0.each do |h|
+        #     hcount,hpos =countPattern(data, h, ['X','M','A','S'],[]) 
+        #     # puts "hcount #{hcount}"
+        #     h1count,h1pos=countPattern(data, h, ['S','A','M','X'],[]) 
+        #     # puts "h1count #{h1count}"
+        #     sum += hcount+h1count
+        #     hits += hpos+h1pos
+        # end
 
-        puts "**** hcount sum #{sum}"
+        # puts "**** hcount sum #{sum}"
 
-        pos1.each do |v|
-            vcount,vpos=countPattern(data, v, ['X','M','A','S'],[]) 
-            # puts "vcount #{vcount}"
-            v1count,v1pos=countPattern(data, v,  ['S','A','M','X'],[]) 
-            # puts "v1count #{v1count}"
-            sum += vcount+v1count
-            hits += vpos+v1pos
-        end
+        # pos1.each do |v|
+        #     vcount,vpos=countPattern(data, v, ['X','M','A','S'],[]) 
+        #     # puts "vcount #{vcount}"
+        #     v1count,v1pos=countPattern(data, v,  ['S','A','M','X'],[]) 
+        #     # puts "v1count #{v1count}"
+        #     sum += vcount+v1count
+        #     hits += vpos+v1pos
+        # end
 
         puts "**** vcount sum #{sum}"
 
@@ -40,34 +40,39 @@ class DayFour
 
         pos2.each do |d1|
             puts "dx-#{dindex} #{d1.size}"            
-            dcount,dpos=countPattern(data, d1, ['X','M','A','S'],dhits) 
+            dcount,dpos=countPattern(data, d1, ['M','A','S'],dhits) 
             #  puts "dcount #{dcount}"
             
-            d1count,d1pos=countPattern(data, d1, ['S','A','M','X'],dhits) 
+            d1count,d1pos=countPattern(data, d1, ['S','A','M'],dhits) 
             #  puts "d1count #{d1count}"
-            sum += dcount+d1count
+            # sum += dcount+d1count
             dhits += dpos+d1pos
             dindex += 1
             
         end
-        hits += dhits
+        # hits += dhits
 
-        puts "**** dcount sum #{sum}"
+        # puts "**** dcount sum #{sum}"
+        # puts "**** dcount hits #{dhits}"
+        puts "**** reverse paths count  #{pos3.length}"
         # print dhits
         rdhits =[]
 
         pos3.each do |d2|
-            rdcount,rdpos=countPattern(data, d2, ['X','M','A','S'],rdhits) 
+            rdcount,rdpos=countPattern(data, d2, ['M','A','S'],rdhits) 
             # puts "rdcount #{rdcount}"
             # print d2
-            rd1count,rd1pos=countPattern(data, d2, ['S','A','M','X'],rdhits) 
+            rd1count,rd1pos=countPattern(data, d2, ['S','A','M'],rdhits) 
             # puts "rd1count #{rd1count}"
-            sum += rdcount+rd1count
+            # sum += rdcount+rd1count
             rdhits += rdpos+rd1pos
         end   
-        hits += rdhits  
+        # hits += rdhits  
         
-        puts "**** rdcount sum #{sum}"
+        # puts "**** rdcount sum #{sum}"
+        # puts "**** rdcount hits #{rdhits}"
+        
+        sum,hits =determineXHits(dhits,rdhits)
         # puts "**** hits #{hits}"
 
     
@@ -95,6 +100,32 @@ class DayFour
         return sum 
     end
     
+    def determineXHits(diagHits,reverseDiagHits)
+        i=1
+        xcount =0
+        hitspos=[]
+        while i < diagHits.length do
+            j=1
+            while j < reverseDiagHits.length do
+                # puts "compare #{diagHits[i]} w #{reverseDiagHits[j]}"
+                if (diagHits[i][0]==reverseDiagHits[j][0]) && (diagHits[i][1]==reverseDiagHits[j][1])
+                    xcount +=1
+                    hitspos.append(diagHits[i-1])
+                    hitspos.append(diagHits[i])                    
+                    hitspos.append(diagHits[i+1])
+                    hitspos.append(reverseDiagHits[j-1])                  
+                    hitspos.append(reverseDiagHits[j])
+                    hitspos.append(reverseDiagHits[j+1])
+                end
+                j=j+3;
+            end
+
+            i=i+3;
+        end
+
+        return xcount,hitspos
+    end
+
     def countPattern(data, poslist, pattern, foundLocations)
         l=0
         plen=pattern.length

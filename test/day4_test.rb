@@ -29,7 +29,7 @@ class DayFourTest < Test::Unit::TestCase
     lines.append('MXMXAXMASX'.chars)
     # puts lines
     compute =  DayFour.new
-    assert_equal(18, compute.determineCount(lines))
+    assert_equal(9, compute.determineCount(lines))
   end
 
   test "day 4 test2 " do    
@@ -39,7 +39,7 @@ class DayFourTest < Test::Unit::TestCase
         lines.append(line.chars)    
     end
     compute =  DayFour.new
-    assert_equal(2599,compute.determineCount(lines))   
+    assert_equal(1948,compute.determineCount(lines))   
   end
 
 end
