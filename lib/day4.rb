@@ -39,7 +39,7 @@ class DayFour
         dindex =0
 
         pos2.each do |d1|
-            puts "dx-#{dindex} #{d1.size}"            
+            # puts "dx-#{dindex} #{d1.size}"            
             dcount,dpos=countPattern(data, d1, ['M','A','S'],dhits) 
             #  puts "dcount #{dcount}"
             

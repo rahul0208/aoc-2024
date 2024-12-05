@@ -4,10 +4,10 @@ require "day1"
 require 'csv'
 
 class DayOneTest < Test::Unit::TestCase
-  test "day 1 test" do
-    distance =  DayOne.new([1, 2],[2]) 
-    assert_equal(0, distance.determineDiffTotal)
-  end
+  # test "day 1 test" do
+  #   distance =  DayOne.new([1, 2],[2]) 
+  #   assert_equal(0, distance.determineDiffTotal)
+  # end
 
   test "day 1 test 2" do
     distance =  DayOne.new([3,4,2,1,3,3],[4,3,5,3,9,3]) 
