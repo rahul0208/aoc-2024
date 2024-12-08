@@ -31,10 +31,10 @@ class DayFour
         #     hits += vpos+v1pos
         # end
 
-        puts "**** vcount sum #{sum}"
+        # puts "**** vcount sum #{sum}"
 
         dhits =[]
-        puts "**** paths count  #{pos2.length}"
+        # puts "**** paths count  #{pos2.length}"
 
         dindex =0
 
@@ -54,7 +54,7 @@ class DayFour
 
         # puts "**** dcount sum #{sum}"
         # puts "**** dcount hits #{dhits}"
-        puts "**** reverse paths count  #{pos3.length}"
+        # puts "**** reverse paths count  #{pos3.length}"
         # print dhits
         rdhits =[]
 
@@ -87,14 +87,14 @@ class DayFour
                  end
                 end
                if miss 
-                    print "."
+                    # print "."
                else
                     print data[i][j]
                end
                 j=j+1                
             end
             i =i+1
-            puts ""
+            # puts ""
         end       
        
         return sum 

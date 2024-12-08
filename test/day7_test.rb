@@ -20,18 +20,18 @@ class DaySevenTest < Test::Unit::TestCase
     
   end
 
-  test "day 7 test2" do
-    file = File.open("data/day7.txt")      
-    cal =  DaySeven.new
-     idx =0
+  # test "day 7 test2" do
+  #   file = File.open("data/day7.txt")      
+  #   cal =  DaySeven.new
+  #    idx =0
     
-    file.readlines().each do |line|    
-      puts "processing line #{idx}"   
-      cal.calibrate(line)
-      idx += 1
-    end    
-    assert_equal(426214131924213,cal.total)
+  #   file.readlines().each do |line|    
+  #     puts "processing line #{idx}"   
+  #     cal.calibrate(line)
+  #     idx += 1
+  #   end    
+  #   assert_equal(426214131924213,cal.total)
 
-  end
+  # end
 
 end

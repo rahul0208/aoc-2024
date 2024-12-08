@@ -103,7 +103,7 @@ class DaySix
           @grow=startx.clone
           @gcol=starty.clone
           @maparea[x][y] =-1
-          puts "Check for #{x} #{y}"          
+          # puts "Check for #{x} #{y}"          
           llimit=0
           status =0
           while(llimit < 2*maxIter) && status!=2 do
