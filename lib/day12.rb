@@ -66,8 +66,90 @@ class DayTwelve
              i +=1
         end
 
+        compute =0
+        grps.each do |g|
+            up =0
+            down =0
+            x=0
+            while x < r.length do
+                upstate=false
+                downstate=false
+                y=0
+                while y < r[x].length do
+                    pos = x*r[0].length+y
+                    test=g.include?([x,y]) 
+                    if test && !upstate && matrix[pos][0]==1
+                        upstate=true
+                        up += matrix[pos][0]                        
+                    end
+                    if test && !downstate && matrix[pos][1]==1
+                        downstate=true
+                        down += matrix[pos][1]                        
+                    end
+                    if test && upstate && matrix[pos][0]==0
+                        upstate=false
+                        up += matrix[pos][0]                        
+                    end
+                    if test && downstate && matrix[pos][1]==0
+                        downstate=false
+                        down += matrix[pos][1]                        
+                    end
+                    if !test && upstate
+                        upstate=false
+                    end
+                    if !test && downstate
+                        downstate=false
+                    end
+                    y=y+1
+                end
+                # puts "#{x}- U #{up} - D #{down}"
+                x=x+1
+            end
+            left = 0
+            right = 0
+            j=0
+            while j < r[0].length do
+                lstate=false
+                rstate=false
+                k=0
+                while k < r.length do
+                    pos = k*r[0].length+j
+                    test=g.include?([k,j]) 
+                    if test && !lstate && matrix[pos][2] ==1
+                        lstate=true
+                        left += matrix[pos][2]                      
+                    end
+                    if test && !rstate && matrix[pos][3] ==1
+                        rstate=true
+                        right += matrix[pos][3]                      
+                    end
+                    if test && lstate && matrix[pos][2] ==0
+                        lstate=false
+                        left += matrix[pos][2]                      
+                    end
+                    if test && rstate && matrix[pos][3] ==0
+                        rstate=false
+                        right += matrix[pos][3]                      
+                    end
+                    if !test && lstate
+                        lstate=false
+                    end
+                    if !test && rstate
+                        rstate=false
+                    end
+                    k=k+1
+                end
+                j=j+1
+            end
+            total = up+down+left+right
+            p1=g[0][0]
+            p2=g[0][1]
+            # puts "sides #{r[p1][p2]} #{total} - #{up} #{down} #{left} #{right}"
+            compute += total*g.length
+        end
+
         
-         puts "#{grps}"    
+        #  puts "#{grps}"    
          total =0
          grps.each do |g|
             area = g.length
@@ -80,7 +162,7 @@ class DayTwelve
             end
             total += area*peri
          end   
-         return total       
+         return compute       
     end
 
     def cropsfarm(px,py, matx)                
